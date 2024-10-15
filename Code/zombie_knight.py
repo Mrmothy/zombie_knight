@@ -237,17 +237,84 @@ class Ruby(pygame.sprite.Sprite):
 class Portal(pygame.sprite.Sprite):
     """A class that if collided with will transport you"""
 
-    def __init__(self):
+    def __init__(self, x, y, color, portal_group):
         """Initialize the portal"""
-        pass
+        super().__init__()
+
+        #Animation frames
+        self.portal_sprites = []
+
+        #Portal animation
+        if color == "green":
+            #Green portal
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile000.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile001.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile002.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile003.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile004.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile005.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile006.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile007.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile008.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile009.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile010.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile011.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile012.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile013.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile014.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile015.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile016.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile017.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile018.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile019.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile020.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'green', 'tile021.png')), (72,72)))
+        else:
+            #Purple Portal
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile000.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile001.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile002.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile003.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile004.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile005.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile006.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile007.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile008.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile009.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile010.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile011.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile012.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile013.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile014.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile015.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile016.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile017.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile018.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile019.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile020.png')), (72,72)))
+            self.portal_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'portals', 'purple', 'tile021.png')), (72,72)))
+
+        #Load an image and get rect
+        self.current_sprite = random.randint(0, len(self.portal_sprites)-1)
+        self.image = self.portal_sprites[self.current_sprite]
+        self.rect = self.image.get_rect()
+        self.rect.bottomleft = (x, y)
+
+        #Add to Portal Group
+        portal_group.add(self)
 
     def update(self):
         """Update the portal"""
-        pass
+        self.animate(self.portal_sprites, .1)
 
-    def animate(self):
+    def animate(self, sprite_list, speed):
         """Animate the portal"""
-        pass
+        if self.current_sprite < len(sprite_list) -1:
+            self.current_sprite += speed
+        else:
+            self.current_sprite = 0
+        
+        self.image = sprite_list[int(self.current_sprite)]
 
 #Create sprite group    
 my_main_tile_group = pygame.sprite.Group()
@@ -262,13 +329,13 @@ my_portal_group = pygame.sprite.Group()
 my_ruby_group = pygame.sprite.Group()
 
 #Create a tile map 
-#0 -> no tile, 1 -> dirt, 2-5 -> platforms, 6 -> ruby maker, 7-8 -> platform, 9 -> Player
+#0 -> No Tile, 1 -> Dirt, 2-5 -> Platforms, 6 -> Ruby Maker, 7-8 -> Portals, 9 -> Player
 #23 rows and 40 columns
 tile_map = [
 #    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0],
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -286,7 +353,7 @@ tile_map = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0],
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
@@ -313,9 +380,9 @@ for i in range(len(tile_map)):
             RubyMaker(j*32, i*32, my_main_tile_group)
         #Portals
         elif tile_map[i][j] == 7:
-            pass
+            Portal(j*32, i*32, "green", my_portal_group)
         elif tile_map[i][j] == 8:
-            pass
+            Portal(j*32, i*32, "purple", my_portal_group)
         #Player
         elif tile_map[i][j] == 9:
             pass
@@ -339,6 +406,9 @@ while running:
     #Draw tiles and Update Ruby maker
     my_main_tile_group.update()
     my_main_tile_group.draw(display_surface)
+
+    my_portal_group.update()
+    my_portal_group.draw(display_surface)
 
     #Update The display and tick clock
     pygame.display.update()
