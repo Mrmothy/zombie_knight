@@ -61,9 +61,33 @@ class Game():
 class Tile(pygame.sprite.Sprite):
     """A class to represent a 32x32 pixel area in our display"""
 
-    def __init__(self):
+    def __init__(self, x, y, image_int, main_group, sub_group=""):
         """Initialize the tile"""
-        pass
+        super().__init__()
+        #Load in the correct image and add it to the correct sub group
+        #Dirt Tiles
+        if image_int == 1:
+            self.image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'tiles', 'Tile (1).png')), (32, 32))
+        #Platform Tiles
+        elif image_int == 2:
+            self.image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'tiles', 'Tile (2).png')), (32, 32))
+            sub_group.add(self)
+        elif image_int == 3:
+            self.image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'tiles', 'Tile (3).png')), (32, 32))
+            sub_group.add(self)
+        elif image_int == 4:
+            self.image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'tiles', 'Tile (4).png')), (32, 32))
+            sub_group.add(self)
+        elif image_int == 5:
+            self.image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'tiles', 'Tile (5).png')), (32, 32))
+            sub_group.add(self)
+
+        #Add every tile to the main group
+        main_group.add(self)
+
+        #Get the rect of the image and position with in the grid
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
 
 class Player(pygame.sprite.Sprite):
     """A class the user can control"""
@@ -241,6 +265,35 @@ tile_map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
+#Generate tile objects from the tile map
+#Loop through the 23 lists (rows) in the tile map (i moves us down)
+for i in range(len(tile_map)):
+    #Loop through the 40 elements in a given list (cols) (j moves us across the map)
+    for j in range(len(tile_map[i])):
+        #Dirt tile
+        if tile_map[i][j] == 1:
+            Tile(j*32, i*32, 1, my_main_tile_group)
+        #Platform Tiles
+        elif tile_map[i][j] == 2:
+            Tile(j*32, i*32, 2, my_main_tile_group, my_platform_group)
+        elif tile_map[i][j] == 3:
+            Tile(j*32, i*32, 3, my_main_tile_group, my_platform_group)
+        elif tile_map[i][j] == 4:
+            Tile(j*32, i*32, 4, my_main_tile_group, my_platform_group)
+        elif tile_map[i][j] == 5:
+            Tile(j*32, i*32, 5, my_main_tile_group, my_platform_group)
+        #Ruby Maker
+        elif tile_map[i][j] == 6:
+            pass
+        #Portals
+        elif tile_map[i][j] == 7:
+            pass
+        elif tile_map[i][j] == 8:
+            pass
+        #Player
+        elif tile_map[i][j] == 9:
+            pass
+
 #Load in a background image (must resize image)
 background_image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'background.png')),(1280, 736))
 background_rect = background_image.get_rect()
@@ -256,6 +309,9 @@ while running:
 
     #Blit background image to screen
     display_surface.blit(background_image, background_rect)
+
+    #Draw tiles
+    my_main_tile_group.draw(display_surface)
 
     #Update The display and tick clock
     pygame.display.update()
