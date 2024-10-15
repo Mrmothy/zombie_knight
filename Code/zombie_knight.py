@@ -173,17 +173,43 @@ class Zombie(pygame.sprite.Sprite):
 class RubyMaker(pygame.sprite.Sprite):
     """A tile that is animater. A Ruby will be generated here"""
 
-    def __init__(self):
+    def __init__(self, x, y, main_group):
         """Initialize the ruby maker"""
-        pass
+        super().__init__()
+
+        #Animation frames
+        self.ruby_sprites = []
+
+        #Rotating 
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile000.png')), (64,64)))
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile001.png')), (64,64)))
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile002.png')), (64,64)))
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile003.png')), (64,64)))
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile004.png')), (64,64)))
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile005.png')), (64,64)))
+        self.ruby_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'ruby', 'tile006.png')), (64,64)))
+
+        #Load image and get rect
+        self.current_sprite = 0 
+        self.image = self.ruby_sprites[self.current_sprite]
+        self.rect = self.image.get_rect()
+        self.rect.bottomleft = (x, y)
+
+        #Add to the main group for drawing purposes
+        main_group.add(self)
 
     def update(self):
         """Update the ruby maker"""
-        pass
+        self.animate(self.ruby_sprites, .25)
 
-    def animate(self):
+    def animate(self, sprite_list, speed):
         """Animate the ruby maker"""
-        pass
+        if self.current_sprite < len(sprite_list) -1:
+            self.current_sprite += speed
+        else:
+            self.current_sprite = 0
+        
+        self.image = sprite_list[int(self.current_sprite)]
 
 class Ruby(pygame.sprite.Sprite):
     """A class the player must collect to earn points and health"""
@@ -243,7 +269,7 @@ tile_map = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -284,7 +310,7 @@ for i in range(len(tile_map)):
             Tile(j*32, i*32, 5, my_main_tile_group, my_platform_group)
         #Ruby Maker
         elif tile_map[i][j] == 6:
-            pass
+            RubyMaker(j*32, i*32, my_main_tile_group)
         #Portals
         elif tile_map[i][j] == 7:
             pass
@@ -310,7 +336,8 @@ while running:
     #Blit background image to screen
     display_surface.blit(background_image, background_rect)
 
-    #Draw tiles
+    #Draw tiles and Update Ruby maker
+    my_main_tile_group.update()
     my_main_tile_group.draw(display_surface)
 
     #Update The display and tick clock
