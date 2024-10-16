@@ -161,63 +161,63 @@ class Player(pygame.sprite.Sprite):
         self.attack_left_sprites = []
 
         #Moving
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (1).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (2).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (3).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (4).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (5).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (6).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (7).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (8).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (9).png')), (64, 64)))
-        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'run', 'Run (10).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (2).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (3).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (1).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (4).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (5).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (6).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (7).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (8).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (9).png')), (64, 64)))
+        self.move_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'run', 'Run (10).png')), (64, 64)))
         for sprite in self.move_right_sprites:
             self.move_left_sprites.append(pygame.transform.flip(sprite, True, False))
 
         #Idling 
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (1).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (2).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (3).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (4).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (5).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (6).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (7).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (8).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (9).png')), (64, 64)))
-        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'idle', 'Idle (10).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (1).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (2).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (3).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (4).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (5).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (6).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (7).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (8).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (9).png')), (64, 64)))
+        self.idle_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'idle', 'Idle (10).png')), (64, 64)))
         for sprite in self.idle_right_sprites:
             self.idle_left_sprites.append(pygame.transform.flip(sprite, True, False))
 
         #Jumping
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (1).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (2).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (3).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (4).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (5).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (6).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (7).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (8).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (9).png')), (64, 64)))
-        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'jump', 'Jump (10).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (1).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (2).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (3).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (4).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (5).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (6).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (7).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (8).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (9).png')), (64, 64)))
+        self.jump_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'jump', 'Jump (10).png')), (64, 64)))
         for sprite in self.jump_right_sprites:
             self.jump_left_sprites.append(pygame.transform.flip(sprite, True, False))
 
         #Attacking
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (1).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (2).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (3).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (4).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (5).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (6).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (7).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (8).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (9).png')), (64, 64)))
-        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'player', 'attack', 'Attack (10).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (1).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (2).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (3).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (4).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (5).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (6).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (7).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (8).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (9).png')), (64, 64)))
+        self.attack_right_sprites.append(pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'player', 'attack', 'Attack (10).png')), (64, 64)))
         for sprite in self.attack_right_sprites:
             self.attack_left_sprites.append(pygame.transform.flip(sprite, True, False))
 
         #Load image and get rect
-        sprite.current_sprite = 0
+        self.current_sprite = 0
         self.image = self.idle_right_sprites[self.current_sprite]
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
@@ -253,11 +253,34 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         """Update the player"""
-        pass
+        self.move()
+        self.check_collisions()
+        self.check_animations()
 
     def move(self):
         """Move the player"""
-        pass
+        #Set the acceleration vector
+        self.acceleration = vector(0, self.VERTICAL_ACCELERATION)
+
+        #If user is pressing a key, set the x-component of the acceleration to be non-zero
+        keys =  pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.acceleration.x = -1*self.HORIZONTAL_ACCELERATION
+        elif keys[pygame.K_RIGHT]:
+            self.acceleration.x = self.HORIZONTAL_ACCELERATION
+
+        #Calculate new kinematics values: (4, 1) + (2, 8) = (6, 9)
+        self.acceleration.x -= self.velocity.x * self.HORIZONTAL_FRICTION
+        self.velocity += self.acceleration
+        self.position += self.velocity + 0.5*self.acceleration
+
+        #Update rect based on kinematics and wrap around movement
+        if self.position.x < 0:
+            self.position.x = WINDOW_WIDTH
+        elif self.position.x > WINDOW_WIDTH:
+            self.position.x = 0
+
+        self.rect.bottomleft = self.position
 
     def check_collisions(self):
         """Check for collisions with platforms and portals"""
@@ -505,7 +528,7 @@ tile_map = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0],
@@ -540,7 +563,8 @@ for i in range(len(tile_map)):
             Portal(j*32, i*32, "purple", my_portal_group)
         #Player
         elif tile_map[i][j] == 9:
-            pass
+            my_player = Player(j*32 - 32, i*32 + 32, my_platform_group, my_portal_group, my_bullet_group)
+            my_player_group.add(my_player)
 
 #Load in a background image (must resize image)
 background_image = pygame.transform.scale(pygame.image.load(join('Assets', 'images', 'background.png')),(1280, 736))
@@ -567,6 +591,9 @@ while running:
 
     my_portal_group.update()
     my_portal_group.draw(display_surface)
+
+    my_player_group.update()
+    my_player_group.draw(display_surface)
 
     #Update and the game
     my_game.update()
