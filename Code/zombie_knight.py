@@ -3,6 +3,8 @@ import pygame, random
 #Use 2D vectors
 vectors = pygame.math.Vector2
 
+#Initialize Pygame
+pygame.init()
 
 #Set display surface (Tile size is 32x32 so 1280/32 = 40 tiles wide and 736/32 = 23 tiles height)
 WINDOW_WIDTH = 1280
@@ -20,15 +22,60 @@ class Game():
 
     def __init__(self):
         """Initialize the game"""
-        pass
+        #Set constant variables
+        self.STARTING_ROUND_TIME = 30
+
+        #Set game values
+        self.score = 0
+        self.round_number = 1
+        self.frame_count = 0
+        self.round_time = self.STARTING_ROUND_TIME
+
+        #Set fonts
+        self.title_font = pygame.font.Font(join('Assets', 'fonts', 'Poultrygeist.ttf'), 48)
+        self.HUD_font = pygame.font.Font(join('Assets', 'fonts', 'Pixel.ttf'), 24)
 
     def update(self):
         """Update the game"""
-        pass
+        #Update the round time every second
+        self.frame_count += 1 
+        if self.frame_count % FPS == 0:
+            self.round_time -= 1
+            self.frame_count = 0
 
     def draw(self):
         """Draw the game HUD"""
-        pass
+        #Set Colors
+        WHITE = (255, 255, 255)
+        GREEN = (25, 200, 25)
+
+        #Set Text
+        score_text = self.HUD_font.render(f"Score: {self.score}", True, WHITE)
+        score_rect = score_text.get_rect()
+        score_rect.topleft = (10, WINDOW_HEIGHT - 50)
+
+        health_text = self.HUD_font.render(f"Health: {100}", True, WHITE)
+        health_rect = health_text.get_rect()
+        health_rect.topleft = (10, WINDOW_HEIGHT - 25)
+
+        title_text = self.title_font.render("Zombie Knight", True, GREEN)
+        title_rect = title_text.get_rect()
+        title_rect.center = (WINDOW_WIDTH/2, WINDOW_HEIGHT - 25)
+
+        round_text = self.HUD_font.render(f"Night: {self.round_number}", True, WHITE)
+        round_rect = round_text.get_rect()
+        round_rect.topright = (WINDOW_WIDTH - 10, WINDOW_HEIGHT - 50)
+
+        time_text = self.HUD_font.render(f"Sunrise In: {self.round_time}", True, WHITE)
+        time_rect = time_text.get_rect()
+        time_rect.topright = (WINDOW_WIDTH - 10, WINDOW_HEIGHT - 25)
+
+        #Draw the HUD
+        display_surface.blit(score_text, score_rect)
+        display_surface.blit(health_text, health_rect)
+        display_surface.blit(title_text, title_rect)
+        display_surface.blit(round_text, round_rect)
+        display_surface.blit(time_text, time_rect)
 
     def add_zombie(self):
         """Add a zombie to the game"""
@@ -392,6 +439,9 @@ background_image = pygame.transform.scale(pygame.image.load(join('Assets', 'imag
 background_rect = background_image.get_rect()
 background_rect.topleft = (0, 0)
 
+#Create a game object
+my_game = Game()
+
 #Main Game Loop
 running = True
 while running:
@@ -409,6 +459,10 @@ while running:
 
     my_portal_group.update()
     my_portal_group.draw(display_surface)
+
+    #Update and the game
+    my_game.update()
+    my_game.draw()
 
     #Update The display and tick clock
     pygame.display.update()
