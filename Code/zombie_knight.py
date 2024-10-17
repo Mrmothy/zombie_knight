@@ -16,7 +16,7 @@ pygame.display.set_caption("Zombie Knight")
 FPS = 60
 clock = pygame.time.Clock()
 
-#TODO Define classes
+#Define classes
 class Game():
     """A class to manage gameplay"""
 
@@ -1157,10 +1157,6 @@ while running:
             #Player wants to fire
             if event.key == pygame.K_UP:
                 my_player.fire()
-            #! Rain Zombies
-            if event.key == pygame.K_RETURN:
-                zombie = Zombie(my_platform_group, my_portal_group, 5, 7)
-                my_zombie_group.add(zombie)
 
     #Blit background image to screen
     display_surface.blit(background_image, background_rect)
