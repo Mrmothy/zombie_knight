@@ -114,7 +114,7 @@ class Game():
                     zombie.animate_death = True
         
         #See if a player stomped a dead zombie to finish it or collided with a live zombie to take damage. 
-        collision_list = pygame.sprite.spritecollide(self.player, self.zombie_group, False)
+        collision_list = pygame.sprite.spritecollide(self.player, self.zombie_group, False, pygame.sprite.collide_mask)
         if collision_list:
             for zombie in collision_list:
                 #The zombie is dead; Stomp it
@@ -338,14 +338,14 @@ class Player(pygame.sprite.Sprite):
         """Check for collisions with platforms and portals"""
         #Collision check between player and platforms when falling
         if self.velocity.y > 0:
-            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False)
+            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False, pygame.sprite.collide_mask)
             if collided_platforms:
-                self.position.y = collided_platforms[0].rect.top +1
+                self.position.y = collided_platforms[0].rect.top +5
                 self.velocity.y = 0 
 
         #Collision check between player and platform if jumping up
         if self.velocity.y < 0:
-            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False)
+            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False, pygame.sprite.collide_mask)
             if collided_platforms:
                 self.velocity.y = 0
                 while pygame.sprite.spritecollide(self, self.platform_group, False):
