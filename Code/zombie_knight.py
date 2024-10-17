@@ -23,7 +23,7 @@ class Game():
     def __init__(self, player, zombie_group, platform_group, portal_group, bullet_group, ruby_group):
         """Initialize the game"""
         #Set constant variables
-        self.STARTING_ROUND_TIME = 31
+        self.STARTING_ROUND_TIME = 30
         self.STARTING_ZOMBIE_CREATION_TIME = 5
 
         #Set game values
@@ -317,6 +317,8 @@ class Tile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
 
+        #Create mask for better collisions
+        self.mask = pygame.mask.from_surface(self.image)
 
 class Player(pygame.sprite.Sprite):
     """A class the user can control"""
@@ -438,6 +440,9 @@ class Player(pygame.sprite.Sprite):
         self.move()
         self.check_collisions()
         self.check_animations()
+
+        #Update the players mask
+        self.mask = pygame.mask.from_surface(self.image)
 
     def move(self):
         """Move the player"""
