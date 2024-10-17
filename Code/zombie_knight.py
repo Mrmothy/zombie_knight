@@ -37,6 +37,13 @@ class Game():
         self.title_font = pygame.font.Font(join('Assets', 'fonts', 'Poultrygeist.ttf'), 48)
         self.HUD_font = pygame.font.Font(join('Assets', 'fonts', 'Pixel.ttf'), 24)
 
+        #Set sounds
+        self.lost_ruby_sound = pygame.mixer.Sound(join('Assets', 'sounds', 'lost_ruby.wav'))
+        self.lost_ruby_sound.set_volume(.15)
+        self.ruby_pickup_sound = pygame.mixer.Sound(join('Assets', 'sounds', 'ruby_pickup.wav'))
+        self.ruby_pickup_sound.set_volume(.15)
+        pygame.mixer.music.load(join('Assets', 'sounds', 'level_music.wav'))
+
         #Attach groups and sprites
         self.player = player
         self.zombie_group = zombie_group
@@ -132,6 +139,22 @@ class Game():
                     #Move the player to not continually take damage
                     self.player.position.x -= 256 *zombie.direction
                     self.player.rect.bottomleft = self.player.position
+
+        #See if a player collided with a ruby
+        if pygame.sprite.spritecollide(self.player, self.ruby_group, True, pygame.sprite.collide_mask):
+            self.ruby_pickup_sound.play()
+            self.score += 100
+            self.player.health += 10
+            if self.player.health > self.player.STARTING_HEALTH:
+                self.player.health = self.player.STARTING_HEALTH
+            
+        #See if a living zombie collided with a ruby
+        for zombie in self.zombie_group:
+            if zombie.is_dead == False:
+                if pygame.sprite.spritecollide(zombie, self.ruby_group, True, pygame.sprite.collide_mask):
+                    self.lost_ruby_sound.play()
+                    zombie = Zombie(self.platform_group, self.portal_group, self.round_number, 5 + self.round_number)
+                    self.zombie_group.add(zombie)
 
     def check_round_completion(self):
         """Check if the player survived a single night"""
