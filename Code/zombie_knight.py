@@ -23,13 +23,15 @@ class Game():
     def __init__(self, player, zombie_group, platform_group, portal_group, bullet_group, ruby_group):
         """Initialize the game"""
         #Set constant variables
-        self.STARTING_ROUND_TIME = 30
+        self.STARTING_ROUND_TIME = 31
+        self.STARTING_ZOMBIE_CREATION_TIME = 5
 
         #Set game values
         self.score = 0
         self.round_number = 1
         self.frame_count = 0
         self.round_time = self.STARTING_ROUND_TIME
+        self.zombie_creation_time = self.STARTING_ZOMBIE_CREATION_TIME
 
         #Set fonts
         self.title_font = pygame.font.Font(join('Assets', 'fonts', 'Poultrygeist.ttf'), 48)
@@ -53,6 +55,9 @@ class Game():
         
         #Check for gameplay collisions
         self.check_collisions()
+
+        #Add zombie if zombie creation time is met
+        self.add_zombie()
 
     def draw(self):
         """Draw the game HUD"""
@@ -90,7 +95,12 @@ class Game():
 
     def add_zombie(self):
         """Add a zombie to the game"""
-        pass
+        #Check to add a zombie every second
+        if self.frame_count % FPS == 0:
+            #Only add a zombie if a zombie creation time has passed
+            if self.round_time % self.zombie_creation_time == 0:
+                zombie = Zombie(self.platform_group, self.portal_group, self.round_number, 5 + self.round_number)
+                self.zombie_group.add(zombie)
 
     def check_collisions(self):
         """Check collisions that affect gameplay"""
@@ -330,7 +340,7 @@ class Player(pygame.sprite.Sprite):
         if self.velocity.y > 0:
             collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False)
             if collided_platforms:
-                self.position.y = collided_platforms[0].rect.top + 1
+                self.position.y = collided_platforms[0].rect.top +1
                 self.velocity.y = 0 
 
         #Collision check between player and platform if jumping up
