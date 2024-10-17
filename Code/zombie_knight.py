@@ -23,7 +23,7 @@ class Game():
     def __init__(self, player, zombie_group, platform_group, portal_group, bullet_group, ruby_group):
         """Initialize the game"""
         #Set constant variables
-        self.STARTING_ROUND_TIME = 3
+        self.STARTING_ROUND_TIME = 31
         self.STARTING_ZOMBIE_CREATION_TIME = 5
 
         #Set game values
@@ -64,6 +64,7 @@ class Game():
         self.check_collisions()
         self.add_zombie()
         self.check_round_completion()
+        self.check_game_over()
 
     def draw(self):
         """Draw the game HUD"""
@@ -162,7 +163,10 @@ class Game():
 
     def check_game_over(self):
         """Check to see if the player lost the game"""
-        pass
+        if self.player.health == 0:
+            pygame.mixer.music.stop()
+            self.pause_game(f"Game Over! Final Score: {self.score}", "Press ENTER to play again...")
+            self.rest_game()
 
     def start_new_round(self):
         """Start a new night"""
@@ -229,7 +233,23 @@ class Game():
 
     def rest_game(self):
         """Rest the game"""
-        pass
+        #Reset game values 
+        self.score = 0
+        self.round_time = 1
+        self.round_time = self.STARTING_ROUND_TIME
+        self.zombie_creation_time = self.STARTING_ZOMBIE_CREATION_TIME
+
+        #Reset Player
+        self.player.health = self.player.STARTING_HEALTH
+        self.player.reset()
+
+        #Empty sprite groups
+        self.zombie_group.empty()
+        self.ruby_group.empty()
+        self.bullet_group.empty()
+
+        #Start music again
+        pygame.mixer.music.play(-1, 0.0, 2000)
 
     def title_page(self, main_text, sub_text):
         """Creating a Title Page"""
@@ -296,6 +316,7 @@ class Tile(pygame.sprite.Sprite):
         #Get the rect of the image and position with in the grid
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+
 
 class Player(pygame.sprite.Sprite):
     """A class the user can control"""
@@ -517,6 +538,7 @@ class Player(pygame.sprite.Sprite):
 
     def reset(self):
         """Reset the player's position"""
+        self.velocity = vector(0, 0)
         self.position = vector(self.starting_x, self.starting_y)
         self.rect.bottomleft = self.position
 
