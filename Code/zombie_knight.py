@@ -346,7 +346,7 @@ class Game():
         body_text_11_rect = body_text_11.get_rect()
         body_text_11_rect.topleft = (75, 634)
 
-        body_text_12 = self.HUD_font.render("GOOD LUCK SURVIVING THE NIGHT! ", True, GREEN)
+        body_text_12 = self.HUD_font.render("GOOD LUCK SURVIVING THE NIGHT! Press ENTER to begin!", True, GREEN)
         body_text_12_rect = body_text_12.get_rect()
         body_text_12_rect.center = (WINDOW_WIDTH /2 , 700)
 
@@ -1255,6 +1255,9 @@ while running:
             #Player wants to fire
             if event.key == pygame.K_UP:
                 my_player.fire()
+            #Player wants to pause game
+            if event.key == pygame.K_ESCAPE:
+                my_game.pause_game("TAKING A BREATHER", "Press ENTER to continue....")
 
     #Blit background image to screen
     display_surface.blit(background_image, background_rect)
