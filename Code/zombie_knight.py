@@ -282,6 +282,104 @@ class Game():
                     #User wants to continue
                     if event.key == pygame.K_RETURN:
                         title_page = False
+                        self.controls_page()
+                #User wants to quit
+                if event.type == pygame.QUIT:
+                    sys.exit()
+
+    def controls_page(self):
+        """A page to display the game controls"""
+        #Set Colors 
+        WHITE = (255, 255, 255)
+        BLACK = (0, 0, 0)
+        GREEN = (25, 200, 25)
+
+        title_text = self.title_font.render("Game Controls", True, WHITE)
+        title_rect = title_text.get_rect()
+        title_rect.center = (WINDOW_WIDTH/ 2, 25)
+        
+        body_text_1 = self.HUD_font.render("Use the <- and -> Arrow keys to move your Knight Left and Right", True, GREEN)
+        body_text_1_rect = body_text_1.get_rect()
+        body_text_1_rect.topleft = (100, 96)
+        
+        body_text_2 = self.HUD_font.render("Use the (UP) Arrow key to slash your sword at an on coming zombie", True, GREEN)
+        body_text_2_rect = body_text_2.get_rect()
+        body_text_2_rect.topleft = (100, 144)
+        
+        body_text_3 = self.HUD_font.render("Use the (SPACE BAR) to Jump from platform or to avoid zombies.", True, GREEN)
+        body_text_3_rect = body_text_3.get_rect()
+        body_text_3_rect.topleft = (100, 192)
+        
+        title_text_2 = self.title_font.render("Game Rules", True, WHITE)
+        title_rect_2 = title_text_2.get_rect()
+        title_rect_2.center = (WINDOW_WIDTH/ 2, 250)
+
+        body_text_4 = self.HUD_font.render("The goal of the game is to survive the night with out dying.", True, GREEN)
+        body_text_4_rect = body_text_4.get_rect()
+        body_text_4_rect.topleft = (75, 298)
+
+        body_text_5 = self.HUD_font.render("To do this you will need to kill zombies and collect rubies.", True, GREEN)
+        body_text_5_rect = body_text_5.get_rect()
+        body_text_5_rect.topleft = (75, 346)
+
+        body_text_6 = self.HUD_font.render("To kill a zombie you will need to hit them with our slash attack (UP) Arrow.", True, GREEN)
+        body_text_6_rect = body_text_6.get_rect()
+        body_text_6_rect.topleft = (75, 394)
+
+        body_text_7 = self.HUD_font.render("Once a zombie is down you will need to stomp on them by running them over.", True, GREEN)
+        body_text_7_rect = body_text_7.get_rect()
+        body_text_7_rect.topleft = (75, 442)
+
+        body_text_8 = self.HUD_font.render("Collecting a Ruby will give you a score bonus and health.", True, GREEN)
+        body_text_8_rect = body_text_8.get_rect()
+        body_text_8_rect.topleft = (75, 490)
+
+        body_text_9 = self.HUD_font.render("If a zombie collects a Ruby another zombie will appear immediately!", True, GREEN)
+        body_text_9_rect = body_text_9.get_rect()
+        body_text_9_rect.topleft = (75, 538)
+
+        body_text_10 = self.HUD_font.render("Use the portals in the connors to move quickly around the screen.", True, GREEN)
+        body_text_10_rect = body_text_10.get_rect()
+        body_text_10_rect.topleft = (75, 586)
+
+        body_text_11 = self.HUD_font.render("Try surviving as many nights as you can to get a huge high score.", True, GREEN)
+        body_text_11_rect = body_text_11.get_rect()
+        body_text_11_rect.topleft = (75, 634)
+
+        body_text_12 = self.HUD_font.render("GOOD LUCK SURVIVING THE NIGHT! ", True, GREEN)
+        body_text_12_rect = body_text_12.get_rect()
+        body_text_12_rect.center = (WINDOW_WIDTH /2 , 700)
+
+        #Display pause text
+        display_surface.fill(BLACK)
+        display_surface.blit(title_text, title_rect)
+        pygame.draw.line(display_surface, WHITE, title_rect.bottomleft, title_rect.bottomright, 3)
+        display_surface.blit(body_text_1, body_text_1_rect)
+        display_surface.blit(body_text_2, body_text_2_rect)
+        display_surface.blit(body_text_3, body_text_3_rect)
+        display_surface.blit(title_text_2, title_rect_2)
+        pygame.draw.line(display_surface, WHITE, title_rect_2.bottomleft, title_rect_2.bottomright, 3)
+        display_surface.blit(body_text_4, body_text_4_rect)
+        display_surface.blit(body_text_5, body_text_5_rect)
+        display_surface.blit(body_text_6, body_text_6_rect)
+        display_surface.blit(body_text_7, body_text_7_rect)
+        display_surface.blit(body_text_8, body_text_8_rect)
+        display_surface.blit(body_text_9, body_text_9_rect)
+        display_surface.blit(body_text_10, body_text_10_rect)
+        display_surface.blit(body_text_11, body_text_11_rect)
+        display_surface.blit(body_text_12, body_text_12_rect)
+        
+
+        
+        pygame.display.update()
+
+        controls_page = True
+        while controls_page:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    #User wants to continue
+                    if event.key == pygame.K_RETURN:
+                        controls_page = False
                 #User wants to quit
                 if event.type == pygame.QUIT:
                     sys.exit()
