@@ -233,9 +233,9 @@ class Game():
 
     def rest_game(self):
         """Rest the game"""
-        #Reset game values 
+        #Reset game values
         self.score = 0
-        self.round_time = 1
+        self.round_number = 1
         self.round_time = self.STARTING_ROUND_TIME
         self.zombie_creation_time = self.STARTING_ZOMBIE_CREATION_TIME
 
