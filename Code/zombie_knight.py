@@ -61,10 +61,10 @@ class Game():
             self.round_time -= 1
             self.frame_count = 0
         
+        self.check_game_over()
+        self.check_round_completion()
         self.check_collisions()
         self.add_zombie()
-        self.check_round_completion()
-        self.check_game_over()
 
     def draw(self):
         """Draw the game HUD"""
